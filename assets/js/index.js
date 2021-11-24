@@ -65,9 +65,9 @@ function load() {
 
     for(i = 0; i < hours.length; i++) {
         if(storeText[i] === undefined) {
-            document.querySelector("#text" + i).value = "add your task";
+          $("#text" + i).val("add your task");
         }else{
-            document.querySelector("#text" + i).value =  storeText[i];
+           $("#text" + i).val(storeText[i]);
         }
     };
 };
