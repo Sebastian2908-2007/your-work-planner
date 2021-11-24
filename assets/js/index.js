@@ -52,7 +52,24 @@ function createTimeRows() {
             });
 
     }
-    
+    load()
+};
+
+function load() {
+    savedTasks = JSON.parse(localStorage.getItem('myTask'));
+
+    if(!savedTasks) {
+        savedTasks = [];
+    }
+    storeText = savedTasks;
+
+    for(i = 0; i < hours.length; i++) {
+        if(storeText[i] === undefined) {
+            document.querySelector("#text" + i).value = "add your task";
+        }else{
+            document.querySelector("#text" + i).value =  storeText[i];
+        }
+    };
 };
 createTimeRows();
 updateTime();
