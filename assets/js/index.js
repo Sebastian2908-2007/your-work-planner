@@ -20,10 +20,10 @@ function updateTime() {
 function createTimeRows() {
     // make a bootstrap class= 'row ' div to hold our columns
     $(".container").append("<div class='row'></div>");
-    for(i=0; i < hours.length; i++) {
+    for(i = 0; i < hours.length; i++) {
         // make some id's for the buttons and the textarea
-        var hourId = "text" + i;
-        var buttonId = "button" + i;
+        let hourId = "text" + i;
+        let buttonId = "button" + i;
         // make the columns for button textarea and the div to hold the current hour use properties of the object inside the hours array to give the time representation
         $(".row").append(
             "<div class='col-1 hour'>" + hours[i].shown + "</div>",
@@ -40,7 +40,15 @@ function createTimeRows() {
             }
             // make the buttons clickable and also be able to save to local storage
             $("#" + buttonId).on("click", function(event) {
-                
+               event.preventDefault();
+               // take the textarea id and use split to grab the number so we can use it for making the index in store text array
+               let currentIndex = hourId.split('t')[2];
+               // get the value of the textarea
+               let task = $('#' + hourId).val();
+               // take value of the text area and put it into the array the index of this task will be the value of current index
+               storeText[currentIndex] = task;
+               // put our task into local storage key: myTask value is the value of storeText 
+               localStorage.setItem('myTask', JSON.stringify(storeText));
             });
 
     }
@@ -48,6 +56,8 @@ function createTimeRows() {
 };
 createTimeRows();
 updateTime();
+
+
 
 
 
